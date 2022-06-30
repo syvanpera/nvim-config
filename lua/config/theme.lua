@@ -50,6 +50,6 @@ require("tokyonight").colorscheme()
 -- vim.cmd("colorscheme tokyonight") -- Put your favorite colorscheme here
 
 -- Override some colors
-vim.cmd [[highlight Normal guibg=None]]
-vim.cmd [[highlight NormalNC guibg=None]]
-vim.cmd [[highlight SignColumn guibg=None]]
+vim.cmd [[highlight Normal guibg=#1a1b26]]
+vim.cmd [[highlight NormalNC guibg=#1a1b26]]
+vim.cmd [[highlight SignColumn guibg=#1a1b26]]

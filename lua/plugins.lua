@@ -35,6 +35,13 @@ local function plugins(use)
     config = [[require("nvim-web-devicons").setup({ default = true })]],
   })
 
+  use({
+    "glepnir/dashboard-nvim",
+    opt = false,
+    config = [[require("config.dashboard")]],
+  })
+
+  use({ "nvim-lua/plenary.nvim", module = "plenary" })
 
   use({ "christoomey/vim-tmux-navigator", opt = false })
 
@@ -48,12 +55,13 @@ local function plugins(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
     event = "BufRead",
+    opt = false,
     requires = {
       { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
       "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-textsubjects",
     },
-    config = [[require('config.treesitter')]],
+    config = [[require("config.treesitter")]],
   })
 
   use({
@@ -69,6 +77,75 @@ local function plugins(use)
     event = "VimEnter",
     wants = "nvim-web-devicons",
     config = [[require("config.lualine")]],
+  })
+
+  use({
+    "numToStr/Comment.nvim",
+    keys = { "gc", "gcc", "gbc" },
+    config = [[require("config.comments")]],
+  })
+
+  use({
+    "rcarriga/nvim-notify",
+    event = "VimEnter",
+    config = [[require("config.notify")]],
+  })
+
+  use({
+    "windwp/nvim-autopairs",
+    opt = false,
+    config = [[require("config.autopairs")]],
+  })
+
+  -- Git Gutter
+  use({
+    "lewis6991/gitsigns.nvim",
+    event = "BufReadPre",
+    wants = "plenary.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = [[require("config.gitsigns")]],
+  })
+
+  -- Fuzzy finder
+  use({
+    "nvim-telescope/telescope.nvim",
+    cmd = { "Telescope" },
+    module = "telescope",
+    keys = { "<leader><space>", "<leader>fz", "<leader>pp" },
+    wants = {
+      "plenary.nvim",
+    },
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = [[require("config.telescope")]],
+  })
+
+  use({
+    "akinsho/nvim-toggleterm.lua",
+    opt = false,
+    config = [[require("config.terminal")]],
+  })
+
+  -- Indent Guides and rainbow brackets
+  use({
+    "lukas-reineke/indent-blankline.nvim",
+    opt = false,
+    event = "BufReadPre",
+    config = [[require("config.blankline")]],
+  })
+
+  -- Tabs
+  use({
+    "akinsho/nvim-bufferline.lua",
+    event = "BufReadPre",
+    wants = "nvim-web-devicons",
+    config = [[require("config.bufferline")]],
+  })
+
+  use({
+    "LnL7/vim-nix",
+    opt = false,
   })
 
 end
